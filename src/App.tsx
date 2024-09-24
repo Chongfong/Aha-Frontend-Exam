@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './App.css';
 import DatePicker from './components/DatePicker';
+import Password from './Password';
 
 const darkTheme = createTheme({
   palette: {
@@ -15,6 +16,7 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <header className='App-header'>
           <DatePicker />
+          <Password />
         </header>
       </ThemeProvider>
     </div>
