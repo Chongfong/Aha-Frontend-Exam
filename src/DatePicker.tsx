@@ -103,10 +103,58 @@ export default function DatePicker() {
             setOpenYear(false);
           }
         }}
+        dayOfWeekFormatter={(weekday) => `${weekday.format('dd')}`}
         onYearChange={handleYearChange}
         displayStaticWrapperAs='desktop'
         slotProps={{
-          toolbar: { hidden: false },
+          toolbar: { hidden: false, toolbarFormat: 'MMM, YYYY', toolbarPlaceholder: '__' },
+          yearButton: {
+            sx: {
+              borderRadius: '2px',
+              '&:hover': { backgroundColor: 'white', color: '#181818' },
+            },
+          },
+          actionBar: { actions: ['cancel', 'accept'] },
+        }}
+        sx={{
+          '.MuiPickersLayout-actionBar': {
+            gap: '30px',
+          },
+          '.MuiPickersLayout-actionBar .MuiButton-root': {
+            fontSize: '14px',
+            fontWeight: '600',
+            lineHeight: '24px',
+            textAlign: 'left',
+            color: 'white',
+          },
+          '.MuiTypography-root': {
+            color: 'white',
+            textTransform: 'none',
+            fontSize: '16px',
+            letterSpacing: '1px',
+          },
+          '.MuiDayCalendar-weekDayLabel': {
+            color: '#929292',
+            fontSize: '11px',
+            fontWeight: '400',
+            lineHeight: '13px',
+            textAlign: 'center',
+          },
+          '.MuiPickersLayout-toolbar .MuiDatePickerToolbar-title': {
+            fontWeight: 'bold',
+            fontSize: '32px',
+          },
+          '.MuiPickersDay-today': {
+            border: '1px solid #00A3FF',
+          },
+          '.Mui-selected': {
+            backgroundColor: '#00A3FF',
+            color: 'white',
+          },
+          '.MuiPickersDay-root': {
+            '&:hover': { backgroundColor: 'white', color: '#181818' },
+            '&:focus': { backgroundColor: '#00A3FF', color: 'white' },
+          },
         }}
       />
     </LocalizationProvider>
