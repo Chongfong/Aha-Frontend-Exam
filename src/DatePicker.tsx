@@ -13,7 +13,7 @@ import { useCallback, useState } from 'react';
 const CustomCalendarHeaderRoot = styled('div')({
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '8px 16px',
+  padding: '4px 16px 8px 16px',
   alignItems: 'center',
 });
 
@@ -102,8 +102,12 @@ export default function DatePicker() {
           actionBar: { actions: ['cancel', 'accept'] },
         }}
         sx={{
+          bgcolor: '#181818',
+          width: '320px',
+          height: '469px',
           '.MuiPickersLayout-actionBar': {
             gap: '30px',
+            padding: '0px 27px 16px 0',
           },
           '.MuiPickersLayout-actionBar .MuiButton-root': {
             fontSize: '14px',
@@ -117,6 +121,10 @@ export default function DatePicker() {
             textTransform: 'none',
             fontSize: '16px',
             letterSpacing: '1px',
+            lineHeight: '24px',
+          },
+          '.MuiDayCalendar-weekContainer': {
+            margin: 0,
           },
           '.MuiDayCalendar-weekDayLabel': {
             color: '#929292',
@@ -124,10 +132,15 @@ export default function DatePicker() {
             fontWeight: '400',
             lineHeight: '13px',
             textAlign: 'center',
+            height: '13px',
+          },
+          '.MuiDateCalendar-root': {
+            maxHeight: '317px',
           },
           '.MuiPickersLayout-toolbar .MuiDatePickerToolbar-title': {
             fontWeight: 'bold',
             fontSize: '32px',
+            lineHeight: '44px',
           },
           '.MuiPickersDay-today': {
             border: '1px solid #00A3FF',
