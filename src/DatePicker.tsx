@@ -21,16 +21,14 @@ function CustomCalendarHeader(
   props: PickersCalendarHeaderProps<Dayjs> & {
     onOpenYearSelector: () => void;
     openYear: boolean;
-    currentMonth: Dayjs;
-    onMonthChange: (newDate: Dayjs) => void;
   },
 ) {
   const { currentMonth, onMonthChange, onOpenYearSelector, openYear } = props;
 
-  const selectNextMonth = () => onMonthChange(currentMonth.add(1, 'month'));
-  const selectPreviousMonth = () => onMonthChange(currentMonth.subtract(1, 'month'));
-  const selectNextYear = () => onMonthChange(currentMonth.add(1, 'year'));
-  const selectPreviousYear = () => onMonthChange(currentMonth.subtract(1, 'year'));
+  const selectNextMonth = () => onMonthChange(currentMonth.add(1, 'month'), 'left');
+  const selectPreviousMonth = () => onMonthChange(currentMonth.subtract(1, 'month'), 'right');
+  const selectNextYear = () => onMonthChange(currentMonth.add(1, 'year'), 'left');
+  const selectPreviousYear = () => onMonthChange(currentMonth.subtract(1, 'year'), 'right');
 
   return (
     <CustomCalendarHeaderRoot>
@@ -62,31 +60,18 @@ export default function DatePicker() {
     setOpenYear(true);
   }, [setOpenYear]);
 
-  const handleYearChange = (newValue: Dayjs | null) => {
-    if (newValue) {
-      setCurrentDate(newValue);
-    }
+  const handleYearChange = () => {
     setOpenYear(false);
   };
-
-  const handleMonthChange = useCallback(
-    (newMonth: Dayjs) => {
-      setCurrentDate(newMonth);
-    },
-    [setCurrentDate],
-  );
-
   const CustomCalenderHeaderComponent = useCallback(
     (headerProps: PickersCalendarHeaderProps<dayjs.Dayjs>) => (
       <CustomCalendarHeader
         {...headerProps}
-        currentMonth={currentDate}
         onOpenYearSelector={handleOpenYearSelector}
         openYear={openYear}
-        onMonthChange={handleMonthChange}
       />
     ),
-    [currentDate, handleOpenYearSelector, openYear, handleMonthChange],
+    [handleOpenYearSelector, openYear],
   );
 
   return (
