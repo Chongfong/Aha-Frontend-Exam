@@ -91,6 +91,7 @@ export default function DatePicker() {
         dayOfWeekFormatter={(weekday) => `${weekday.format('dd')}`}
         onYearChange={handleYearChange}
         displayStaticWrapperAs='desktop'
+        showDaysOutsideCurrentMonth
         slotProps={{
           toolbar: { hidden: false, toolbarFormat: 'MMM, YYYY', toolbarPlaceholder: '__' },
           yearButton: {
@@ -105,6 +106,9 @@ export default function DatePicker() {
           bgcolor: '#181818',
           width: '320px',
           height: '469px',
+          '.MuiPickersDay-dayOutsideMonth': {
+            color: 'grey',
+          },
           '.MuiPickersLayout-actionBar': {
             gap: '30px',
             padding: '0px 27px 16px 0',
