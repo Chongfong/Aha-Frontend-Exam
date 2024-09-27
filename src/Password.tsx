@@ -40,12 +40,21 @@ function Password() {
   return (
     <Box display='flex' gap='20px' flexDirection='column' width={335}>
       <TextField
-        sx={{ width: 355, height: 58 }}
+        sx={{
+          width: 335,
+          boxSizing: 'border-box',
+          'MuiOutlinedInput-root': { borderRadius: '8px' },
+          '.MuiInputLabel-root': { color: 'white', paddingX: '2px' },
+          '.MuiOutlinedInput-notchedOutline': { borderWidth: '3px' },
+          '.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            border: '3px solid #00A3FF',
+          },
+        }}
         name='password'
         type='password'
         label='Password'
         variant='outlined'
-        placeholder='password'
+        placeholder='Password'
         slotProps={{ inputLabel: { shrink: true } }}
         onChange={handleChange}
         onFocus={() => setShowErrors(true)}
@@ -57,6 +66,7 @@ function Password() {
           display='flex'
           flexDirection='column'
           width={335}
+          boxSizing='border-box'
           bgcolor='#242424'
           p='8px 12px'
           borderRadius='8px'
@@ -65,24 +75,35 @@ function Password() {
             <Box
               display='flex'
               gap='10px'
-              height={40}
               alignItems='center'
               key={criteria.key}
               textAlign='left'
+              height={criteria.key === 'specialChar' ? 50 : 'auto'}
             >
               {validationStatus[criteria.key as keyof ValidationStatus] ? (
                 <CheckCircleIcon fontSize='medium' sx={{ color: '#00D1FF' }} />
               ) : (
                 <CheckCircleOutlineIcon fontSize='medium' color='disabled' />
               )}
-              <Typography variant='body2' color='white'>
-                {criteria.text}
-              </Typography>
+              <Box display='flex' height={40} width={289} alignItems='center'>
+                <Typography
+                  variant='body2'
+                  color='white'
+                  sx={{
+                    letterSpacing: '0.25px',
+                    lineHeight: '21px',
+                    fontFamily: 'Ubuntu',
+                    fontSize: '14px',
+                  }}
+                >
+                  {criteria.text}
+                </Typography>
+              </Box>
             </Box>
           ))}
         </Box>
       ) : (
-        <Box width={335} height={216} />
+        <Box width={335} height={226} />
       )}
     </Box>
   );
