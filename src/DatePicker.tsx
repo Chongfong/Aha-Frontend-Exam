@@ -13,7 +13,7 @@ import { useCallback, useState } from 'react';
 const CustomCalendarHeaderRoot = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '4px 16px 8px 16px',
+  padding: '4px 5px 13px 3px',
   alignItems: 'center',
 });
 
@@ -40,7 +40,11 @@ function CustomCalendarHeader(
           <ChevronLeft />
         </IconButton>
       </Stack>
-      <Typography variant='body2' onClick={onOpenYearSelector} style={{ cursor: 'pointer' }}>
+      <Typography
+        variant='body2'
+        onClick={onOpenYearSelector}
+        style={{ cursor: 'pointer', paddingTop: '6px' }}
+      >
         {openYear ? currentMonth.format('YYYY') : currentMonth.format('MMMM YYYY')}
       </Typography>
       <Stack spacing={1} direction='row'>
@@ -150,12 +154,19 @@ export default function DatePicker() {
             height: '469px',
             borderRadius: '10px',
             marginTop: '14px',
+            '.MuiBox-root': {
+              alignItems: 'flex-start',
+            },
+
+            '.MuiDayCalendar-monthContainer': {
+              top: '11px',
+            },
             '.MuiPickersDay-dayOutsideMonth': {
               color: 'grey',
             },
             '.MuiPickersLayout-actionBar': {
-              gap: '30px',
-              padding: '0px 27px 16px 0',
+              gap: '32px',
+              padding: '0px 22px 18px 0',
             },
             '.MuiPickersLayout-actionBar .MuiButton-root': {
               fontSize: '14px',
@@ -163,6 +174,7 @@ export default function DatePicker() {
               lineHeight: '24px',
               textAlign: 'left',
               color: 'white',
+              textTransform: 'none',
             },
             '.MuiTypography-root': {
               color: 'white',
@@ -171,8 +183,12 @@ export default function DatePicker() {
               letterSpacing: '1px',
               lineHeight: '24px',
             },
+            '.MuiDayCalendar-header': {
+              gap: '6px',
+            },
             '.MuiDayCalendar-weekContainer': {
               margin: 0,
+              gap: '6px',
             },
             '.MuiDayCalendar-weekDayLabel': {
               color: '#929292',
@@ -181,14 +197,19 @@ export default function DatePicker() {
               lineHeight: '13px',
               textAlign: 'center',
               height: '13px',
+              margin: 0,
             },
             '.MuiDateCalendar-root': {
-              maxHeight: '317px',
+              maxHeight: '300px',
             },
             '.MuiPickersLayout-toolbar .MuiDatePickerToolbar-title': {
               fontWeight: 'bold',
               fontSize: '32px',
               lineHeight: '44px',
+            },
+            '.MuiDatePickerToolbar-root': {
+              padding: '17px 24px 14px',
+              gap: '5px',
             },
             '.MuiDateCalendar-root .MuiPickersDay-today': {
               border: '1px solid #00A3FF',
@@ -198,6 +219,9 @@ export default function DatePicker() {
               color: 'white',
             },
             '.MuiPickersDay-root': {
+              fontSize: '14px',
+              lineHeight: '20.02px',
+              margin: 0,
               '&:hover': { backgroundColor: 'white', color: '#181818' },
               '&:focus': { backgroundColor: '#00A3FF', color: 'white' },
             },
