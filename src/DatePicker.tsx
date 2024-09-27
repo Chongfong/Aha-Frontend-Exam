@@ -190,7 +190,7 @@ export default function DatePicker() {
               fontSize: '32px',
               lineHeight: '44px',
             },
-            '.MuiPickersDay-today': {
+            '.MuiDateCalendar-root .MuiPickersDay-today': {
               border: '1px solid #00A3FF',
             },
             '.Mui-selected': {
