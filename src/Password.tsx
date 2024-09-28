@@ -58,10 +58,10 @@ function Password() {
         sx={{
           width: 335,
           boxSizing: 'border-box',
-          'MuiOutlinedInput-root': { borderRadius: '8px' },
+          '.MuiOutlinedInput-root': { borderRadius: '8px' },
           '.MuiInputLabel-root': { color: 'white', paddingX: '2px' },
           '.MuiOutlinedInput-notchedOutline': { borderWidth: '3px' },
-          '.Mui-focused .MuiOutlinedInput-notchedOutline': {
+          '.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
             border: '3px solid #00A3FF',
           },
         }}
