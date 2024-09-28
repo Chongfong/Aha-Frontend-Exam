@@ -228,9 +228,10 @@ export default function DatePicker() {
             '.MuiDateCalendar-root .MuiPickersDay-today': {
               border: '1px solid #00A3FF',
             },
-            '.Mui-selected': {
+            '.MuiPickersDay-root.Mui-selected.Mui-selected': {
               backgroundColor: '#00A3FF',
               color: 'white',
+              fontWeight: '400',
             },
             '.MuiPickersDay-root': {
               fontSize: '14px',
