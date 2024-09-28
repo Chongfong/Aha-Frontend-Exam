@@ -109,13 +109,23 @@ export default function DatePicker() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TextField
-        label='Select Date'
+        label='Birthday'
         value={inputDate}
         onChange={handleInputChange}
         onFocus={handleInputFocus}
-        placeholder='MM/DD/YYYY'
+        placeholder='mm/dd/yyyy'
         slotProps={{ inputLabel: { shrink: true } }}
-        sx={{ width: 335, height: 58 }}
+        sx={{
+          width: 335,
+          height: 58,
+          boxSizing: 'border-box',
+          '.MuiOutlinedInput-root': { borderRadius: '8px' },
+          '.MuiInputLabel-root': { color: 'white', paddingX: '2px' },
+          '.MuiOutlinedInput-notchedOutline': { borderWidth: '3px' },
+          '.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            border: '3px solid white',
+          },
+        }}
       />
       {pickerOpen ? (
         <StaticDatePicker
@@ -139,7 +149,7 @@ export default function DatePicker() {
             yearButton: {
               sx: {
                 borderRadius: '2px',
-                '&:hover': { backgroundColor: 'white', color: '#181818' },
+                '&:hover': { backgroundColor: 'white', color: '#181818', borderRadius: 0 },
               },
             },
             actionBar: {
@@ -157,7 +167,11 @@ export default function DatePicker() {
             '.MuiBox-root': {
               alignItems: 'flex-start',
             },
-
+            '.MuiYearCalendar-root': {
+              marginTop: '-1px',
+              gap: '24px 9px',
+              padding: '0 25px 0 24px',
+            },
             '.MuiDayCalendar-monthContainer': {
               top: '11px',
             },
@@ -224,6 +238,16 @@ export default function DatePicker() {
               margin: 0,
               '&:hover': { backgroundColor: 'white', color: '#181818' },
               '&:focus': { backgroundColor: '#00A3FF', color: 'white' },
+            },
+            '.MuiPickersYear-root': {
+              width: '61px',
+              height: '24px',
+              padding: 0,
+              flex: 0,
+            },
+            '.MuiPickersYear-yearButton': {
+              height: '24px',
+              lineHeight: '24px',
             },
           }}
         />
