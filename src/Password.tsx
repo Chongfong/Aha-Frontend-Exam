@@ -10,6 +10,53 @@ interface ValidationStatus {
   number: boolean;
   specialChar: boolean;
 }
+
+const styles = {
+  containerBox: {
+    display: 'flex',
+    gap: '20px',
+    flexDirection: 'column',
+    width: 335,
+  },
+  passwordInput: {
+    width: 335,
+    boxSizing: 'border-box',
+    '.MuiOutlinedInput-root': { borderRadius: '8px' },
+    '.MuiInputLabel-root': { color: 'white', paddingX: '2px' },
+    '.MuiOutlinedInput-notchedOutline': { borderWidth: '3px' },
+    '.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      border: '3px solid #00A3FF',
+    },
+  },
+  validationBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: 335,
+    boxSizing: 'border-box',
+    bgcolor: '#242424',
+    p: '8px 12px',
+    borderRadius: '8px',
+  },
+  validationLists: {
+    display: 'flex',
+    gap: '10px',
+    alignItems: 'center',
+    textAlign: 'left',
+  },
+  validationTextBox: {
+    display: 'flex',
+    height: 40,
+    width: 289,
+    alignItems: 'center',
+  },
+  validationText: {
+    color: 'white',
+    letterSpacing: '0.25px',
+    lineHeight: '21px',
+    fontFamily: 'Ubuntu',
+    fontSize: '14px',
+  },
+};
 function Password() {
   const [showErrors, setShowErrors] = useState(false);
   const [password, setPassword] = useState('');
@@ -53,18 +100,9 @@ function Password() {
   ];
 
   return (
-    <Box display='flex' gap='20px' flexDirection='column' width={335}>
+    <Box sx={styles.containerBox}>
       <TextField
-        sx={{
-          width: 335,
-          boxSizing: 'border-box',
-          '.MuiOutlinedInput-root': { borderRadius: '8px' },
-          '.MuiInputLabel-root': { color: 'white', paddingX: '2px' },
-          '.MuiOutlinedInput-notchedOutline': { borderWidth: '3px' },
-          '.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            border: '3px solid #00A3FF',
-          },
-        }}
+        sx={styles.passwordInput}
         name='password'
         type='password'
         label='Password'
@@ -77,22 +115,11 @@ function Password() {
         value={password}
       />
       {showErrors ? (
-        <Box
-          display='flex'
-          flexDirection='column'
-          width={335}
-          boxSizing='border-box'
-          bgcolor='#242424'
-          p='8px 12px'
-          borderRadius='8px'
-        >
+        <Box sx={styles.validationBox}>
           {validationCriteria.map((criteria) => (
             <Box
-              display='flex'
-              gap='10px'
-              alignItems='center'
+              sx={styles.validationLists}
               key={criteria.key}
-              textAlign='left'
               height={criteria.key === 'specialChar' ? 50 : 'auto'}
             >
               {validationStatus[criteria.key as keyof ValidationStatus] ? (
@@ -100,17 +127,8 @@ function Password() {
               ) : (
                 <CheckCircleOutlineIcon fontSize='medium' color='disabled' />
               )}
-              <Box display='flex' height={40} width={289} alignItems='center'>
-                <Typography
-                  variant='body2'
-                  color='white'
-                  sx={{
-                    letterSpacing: '0.25px',
-                    lineHeight: '21px',
-                    fontFamily: 'Ubuntu',
-                    fontSize: '14px',
-                  }}
-                >
+              <Box sx={styles.validationTextBox}>
+                <Typography variant='body2' sx={styles.validationText}>
                   {criteria.text}
                 </Typography>
               </Box>
