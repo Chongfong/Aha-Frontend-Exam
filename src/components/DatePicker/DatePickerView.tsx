@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { TextField, Box } from '@mui/material';
+import { TextField, Box, ClickAwayListener } from '@mui/material';
 import { PickersCalendarHeaderProps } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import useDatePickerController from './DatePickerController';
@@ -24,6 +24,7 @@ export default function DatePickerView() {
     handleCancel,
     handleInputChange,
     handleInputFocus,
+    setPickerOpen,
   } = useDatePickerController();
 
   const CustomCalenderHeaderComponent = useCallback(
@@ -39,49 +40,55 @@ export default function DatePickerView() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <TextField
-        label='Birthday'
-        value={inputDate}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(e, setInputDate)}
-        onFocus={handleInputFocus}
-        placeholder='mm/dd/yyyy'
-        slotProps={{ inputLabel: { shrink: true } }}
-        sx={datePickerStyles.dateInput}
-      />
-      {pickerOpen ? (
-        <StaticDatePicker
-          value={tempDate}
-          onChange={handleDayClick}
-          slots={{
-            calendarHeader: CustomCalenderHeaderComponent,
-          }}
-          view={openYear ? 'year' : 'day'}
-          onViewChange={(newView) => {
-            if (newView !== 'year') {
-              handleYearChange();
+      <ClickAwayListener onClickAway={() => setPickerOpen(false)}>
+        <Box display='flex' justifyContent='center' flexDirection='column' alignItems='center'>
+          <TextField
+            label='Birthday'
+            value={inputDate}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleInputChange(e, setInputDate)
             }
-          }}
-          dayOfWeekFormatter={(weekday) => `${weekday.format('dd')}`}
-          displayStaticWrapperAs='desktop'
-          showDaysOutsideCurrentMonth
-          slotProps={{
-            toolbar: { hidden: false, toolbarFormat: 'MMM, YYYY', toolbarPlaceholder: '__' },
-            yearButton: {
-              sx: {
-                ...datePickerStyles.yearButton,
-              },
-            },
-            actionBar: {
-              actions: ['cancel', 'accept'],
-              onAccept: handleAccept,
-              onCancel: handleCancel,
-            },
-          }}
-          sx={datePickerStyles.datePicker}
-        />
-      ) : (
-        <Box sx={datePickerStyles.spareBox} />
-      )}
+            onFocus={handleInputFocus}
+            placeholder='mm/dd/yyyy'
+            slotProps={{ inputLabel: { shrink: true } }}
+            sx={datePickerStyles.dateInput}
+          />
+          {pickerOpen ? (
+            <StaticDatePicker
+              value={tempDate}
+              onChange={handleDayClick}
+              slots={{
+                calendarHeader: CustomCalenderHeaderComponent,
+              }}
+              view={openYear ? 'year' : 'day'}
+              onViewChange={(newView) => {
+                if (newView !== 'year') {
+                  handleYearChange();
+                }
+              }}
+              dayOfWeekFormatter={(weekday) => `${weekday.format('dd')}`}
+              displayStaticWrapperAs='desktop'
+              showDaysOutsideCurrentMonth
+              slotProps={{
+                toolbar: { hidden: false, toolbarFormat: 'MMM, YYYY', toolbarPlaceholder: '__' },
+                yearButton: {
+                  sx: {
+                    ...datePickerStyles.yearButton,
+                  },
+                },
+                actionBar: {
+                  actions: ['cancel', 'accept'],
+                  onAccept: handleAccept,
+                  onCancel: handleCancel,
+                },
+              }}
+              sx={datePickerStyles.datePicker}
+            />
+          ) : (
+            <Box sx={datePickerStyles.spareBox} />
+          )}
+        </Box>
+      </ClickAwayListener>
     </LocalizationProvider>
   );
 }

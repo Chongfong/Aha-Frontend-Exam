@@ -48,5 +48,6 @@ export default function useDatePickerController() {
     handleInputFocus,
     inputDate,
     setInputDate,
+    setPickerOpen,
   };
 }
