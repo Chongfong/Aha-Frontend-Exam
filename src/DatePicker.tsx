@@ -5,17 +5,141 @@ import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Stack, IconButton, Typography, TextField, Box } from '@mui/material';
 import { PickersCalendarHeaderProps } from '@mui/x-date-pickers';
-import { styled } from '@mui/material/styles';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { useCallback, useState } from 'react';
 
-const CustomCalendarHeaderRoot = styled(Box)({
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '4px 5px 13px 3px',
-  alignItems: 'center',
-});
+const datePickerStyles = {
+  dateInput: {
+    width: 335,
+    height: 58,
+    boxSizing: 'border-box',
+    '.MuiOutlinedInput-root': { borderRadius: '8px' },
+    '.MuiInputLabel-root': { color: 'white', paddingX: '2px' },
+    '.MuiOutlinedInput-notchedOutline': { borderWidth: '3px' },
+    '.MuiOutlinedInput-root.Mui-focused': {
+      color: 'white',
+    },
+    '.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      border: '3px solid white',
+    },
+  },
+  spareBox: {
+    width: '320px',
+    height: '469px',
+    marginTop: '14px',
+  },
+  yearButton: {
+    borderRadius: '2px',
+    '&:hover': { backgroundColor: 'white', color: '#181818', borderRadius: 0 },
+  },
+  datePicker: {
+    bgcolor: '#181818',
+    width: '320px',
+    height: '469px',
+    borderRadius: '10px',
+    marginTop: '14px',
+    '.MuiBox-root': {
+      alignItems: 'flex-start',
+    },
+    '.MuiYearCalendar-root': {
+      marginTop: '-1px',
+      gap: '24px 9px',
+      padding: '0 25px 0 24px',
+    },
+    '.MuiDayCalendar-monthContainer': {
+      top: '11px',
+    },
+    '.MuiPickersDay-dayOutsideMonth': {
+      color: 'grey',
+    },
+    '.MuiPickersLayout-actionBar': {
+      gap: '32px',
+      padding: '0px 22px 18px 0',
+    },
+    '.MuiPickersLayout-actionBar .MuiButton-root': {
+      fontSize: '14px',
+      fontWeight: '600',
+      lineHeight: '24px',
+      textAlign: 'left',
+      color: 'white',
+      textTransform: 'none',
+    },
+    '.MuiTypography-root': {
+      color: 'white',
+      textTransform: 'none',
+      fontSize: '16px',
+      letterSpacing: '1px',
+      lineHeight: '24px',
+    },
+    '.MuiDayCalendar-header': {
+      gap: '6px',
+    },
+    '.MuiDayCalendar-weekContainer': {
+      margin: 0,
+      gap: '6px',
+    },
+    '.MuiDayCalendar-weekDayLabel': {
+      color: '#929292',
+      fontSize: '11px',
+      fontWeight: '400',
+      lineHeight: '13px',
+      textAlign: 'center',
+      height: '13px',
+      margin: 0,
+    },
+    '.MuiDateCalendar-root': {
+      maxHeight: '300px',
+    },
+    '.MuiPickersLayout-toolbar .MuiDatePickerToolbar-title': {
+      fontWeight: 'bold',
+      fontSize: '32px',
+      lineHeight: '44px',
+    },
+    '.MuiDatePickerToolbar-root': {
+      padding: '17px 24px 14px',
+      gap: '5px',
+    },
+    '.MuiDateCalendar-root .MuiPickersDay-today': {
+      border: '1px solid #00A3FF',
+    },
+    '.MuiPickersDay-root.Mui-selected.Mui-selected': {
+      backgroundColor: '#00A3FF',
+      color: 'white',
+      fontWeight: '400',
+    },
+    '.MuiPickersDay-root': {
+      fontSize: '14px',
+      lineHeight: '20.02px',
+      margin: 0,
+      '&:hover': { backgroundColor: 'white', color: '#181818' },
+      '&:focus': { backgroundColor: '#00A3FF', color: 'white' },
+    },
+    '.MuiPickersYear-root': {
+      width: '61px',
+      height: '24px',
+      padding: 0,
+      flex: 0,
+    },
+    '.MuiPickersYear-yearButton': {
+      height: '24px',
+      lineHeight: '24px',
+    },
+  },
+};
+
+const calendarHeaderStyles = {
+  headerContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '4px 5px 13px 3px',
+    alignItems: 'center',
+  },
+  headerText: {
+    cursor: 'pointer',
+    paddingTop: '6px',
+  },
+};
 
 function CustomCalendarHeader(
   props: PickersCalendarHeaderProps<Dayjs> & {
@@ -31,7 +155,7 @@ function CustomCalendarHeader(
   const selectPreviousYear = () => onMonthChange(currentMonth.subtract(1, 'year'), 'right');
 
   return (
-    <CustomCalendarHeaderRoot>
+    <Box sx={calendarHeaderStyles.headerContainer}>
       <Stack spacing={1} direction='row'>
         <IconButton
           onClick={openYear ? selectPreviousYear : selectPreviousMonth}
@@ -40,11 +164,7 @@ function CustomCalendarHeader(
           <ChevronLeft />
         </IconButton>
       </Stack>
-      <Typography
-        variant='body2'
-        onClick={onOpenYearSelector}
-        style={{ cursor: 'pointer', paddingTop: '6px' }}
-      >
+      <Typography variant='body2' onClick={onOpenYearSelector} sx={calendarHeaderStyles.headerText}>
         {openYear ? currentMonth.format('YYYY') : currentMonth.format('MMMM YYYY')}
       </Typography>
       <Stack spacing={1} direction='row'>
@@ -52,7 +172,7 @@ function CustomCalendarHeader(
           <ChevronRight />
         </IconButton>
       </Stack>
-    </CustomCalendarHeaderRoot>
+    </Box>
   );
 }
 
@@ -115,17 +235,7 @@ export default function DatePicker() {
         onFocus={handleInputFocus}
         placeholder='mm/dd/yyyy'
         slotProps={{ inputLabel: { shrink: true } }}
-        sx={{
-          width: 335,
-          height: 58,
-          boxSizing: 'border-box',
-          '.MuiOutlinedInput-root': { borderRadius: '8px' },
-          '.MuiInputLabel-root': { color: 'white', paddingX: '2px' },
-          '.MuiOutlinedInput-notchedOutline': { borderWidth: '3px' },
-          '.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            border: '3px solid white',
-          },
-        }}
+        sx={datePickerStyles.dateInput}
       />
       {pickerOpen ? (
         <StaticDatePicker
@@ -148,8 +258,7 @@ export default function DatePicker() {
             toolbar: { hidden: false, toolbarFormat: 'MMM, YYYY', toolbarPlaceholder: '__' },
             yearButton: {
               sx: {
-                borderRadius: '2px',
-                '&:hover': { backgroundColor: 'white', color: '#181818', borderRadius: 0 },
+                ...datePickerStyles.yearButton,
               },
             },
             actionBar: {
@@ -158,102 +267,10 @@ export default function DatePicker() {
               onCancel: handleCancel,
             },
           }}
-          sx={{
-            bgcolor: '#181818',
-            width: '320px',
-            height: '469px',
-            borderRadius: '10px',
-            marginTop: '14px',
-            '.MuiBox-root': {
-              alignItems: 'flex-start',
-            },
-            '.MuiYearCalendar-root': {
-              marginTop: '-1px',
-              gap: '24px 9px',
-              padding: '0 25px 0 24px',
-            },
-            '.MuiDayCalendar-monthContainer': {
-              top: '11px',
-            },
-            '.MuiPickersDay-dayOutsideMonth': {
-              color: 'grey',
-            },
-            '.MuiPickersLayout-actionBar': {
-              gap: '32px',
-              padding: '0px 22px 18px 0',
-            },
-            '.MuiPickersLayout-actionBar .MuiButton-root': {
-              fontSize: '14px',
-              fontWeight: '600',
-              lineHeight: '24px',
-              textAlign: 'left',
-              color: 'white',
-              textTransform: 'none',
-            },
-            '.MuiTypography-root': {
-              color: 'white',
-              textTransform: 'none',
-              fontSize: '16px',
-              letterSpacing: '1px',
-              lineHeight: '24px',
-            },
-            '.MuiDayCalendar-header': {
-              gap: '6px',
-            },
-            '.MuiDayCalendar-weekContainer': {
-              margin: 0,
-              gap: '6px',
-            },
-            '.MuiDayCalendar-weekDayLabel': {
-              color: '#929292',
-              fontSize: '11px',
-              fontWeight: '400',
-              lineHeight: '13px',
-              textAlign: 'center',
-              height: '13px',
-              margin: 0,
-            },
-            '.MuiDateCalendar-root': {
-              maxHeight: '300px',
-            },
-            '.MuiPickersLayout-toolbar .MuiDatePickerToolbar-title': {
-              fontWeight: 'bold',
-              fontSize: '32px',
-              lineHeight: '44px',
-            },
-            '.MuiDatePickerToolbar-root': {
-              padding: '17px 24px 14px',
-              gap: '5px',
-            },
-            '.MuiDateCalendar-root .MuiPickersDay-today': {
-              border: '1px solid #00A3FF',
-            },
-            '.MuiPickersDay-root.Mui-selected.Mui-selected': {
-              backgroundColor: '#00A3FF',
-              color: 'white',
-              fontWeight: '400',
-            },
-            '.MuiPickersDay-root': {
-              fontSize: '14px',
-              lineHeight: '20.02px',
-              margin: 0,
-              '&:hover': { backgroundColor: 'white', color: '#181818' },
-              '&:focus': { backgroundColor: '#00A3FF', color: 'white' },
-            },
-            '.MuiPickersYear-root': {
-              width: '61px',
-              height: '24px',
-              padding: 0,
-              flex: 0,
-            },
-            '.MuiPickersYear-yearButton': {
-              height: '24px',
-              lineHeight: '24px',
-            },
-          }}
+          sx={datePickerStyles.datePicker}
         />
       ) : (
-        <Box sx={{ width: '320px', height: '469px', marginTop: '14px' }} />
+        <Box sx={datePickerStyles.spareBox} />
       )}
     </LocalizationProvider>
   );
