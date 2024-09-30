@@ -29,13 +29,18 @@ export default function useDatePickerModel() {
   };
 
   const handleCancel = () => {
-    setTempDate(currentDate);
+    if (currentDate) {
+      setTempDate(currentDate);
+    } else {
+      setTempDate(null);
+    }
     setPickerOpen(false);
   };
 
   return {
     setTempDate,
     currentDate,
+    setCurrentDate,
     tempDate,
     openYear,
     pickerOpen,

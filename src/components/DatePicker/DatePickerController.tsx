@@ -3,6 +3,7 @@ import useDatePickerModel from './DatePickerModel';
 export default function useDatePickerController() {
   const {
     currentDate,
+    setCurrentDate,
     setTempDate,
     tempDate,
     openYear,
@@ -24,6 +25,7 @@ export default function useDatePickerController() {
     if (e.target.value === '' && currentDate) {
       setDate('');
       setTempDate(null);
+      setCurrentDate(null);
     }
     setDate(e.target.value);
   };
