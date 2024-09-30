@@ -3,6 +3,7 @@ import useDatePickerModel from './DatePickerModel';
 export default function useDatePickerController() {
   const {
     currentDate,
+    setTempDate,
     tempDate,
     openYear,
     pickerOpen,
@@ -20,6 +21,10 @@ export default function useDatePickerController() {
     e: React.ChangeEvent<HTMLInputElement>,
     setDate: (date: string) => void,
   ) => {
+    if (e.target.value === '' && currentDate) {
+      setDate('');
+      setTempDate(null);
+    }
     setDate(e.target.value);
   };
 

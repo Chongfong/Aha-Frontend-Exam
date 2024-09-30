@@ -34,6 +34,7 @@ export default function useDatePickerModel() {
   };
 
   return {
+    setTempDate,
     currentDate,
     tempDate,
     openYear,
