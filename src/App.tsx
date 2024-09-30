@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './App.css';
-import DatePicker from './DatePicker';
+import DatePicker from './components/DatePicker';
 
 const darkTheme = createTheme({
   palette: {
