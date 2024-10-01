@@ -1,46 +1,71 @@
-# Getting Started with Create React App
+<h1 align="center"> Password and Date Picker </h1> <br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <a href="https://password-and-date-picker.vercel.app/">
+    <img alt="password-and-date-picker" title="password-and-date-picker" src="public/logo512.png" width="100">
+  </a>
+</p>
 
-## Available Scripts
+<p align="center">
+  A Password Input field and a Date Picker.
+</p>
 
-In the project directory, you can run:
+<https://password-and-date-picker.vercel.app/>
 
-### `yarn start`
+## ▌ Introduction
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Password Input field: validates the input password with specific criteria
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Date Picker: allows users to select a date easily
 
-### `yarn test`
+## ▌ Techniques
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Front-End Fundamental
+  - HTML / CSS / JavaScript
+  - TypeScript
+  - Responsive Web Design (RWD)
+- Frameworks & Library
+  - React (Hooks)
+  - MUI
+  - MUI X Date Picker
+  - dayjs
+- Others
+  - Husky
+  - Lint Tool: ESLint (Airbnb Style Guide) / Prettier
+  - Version Control: Git / GitHub
+  - Hoisting: Vercel
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ▌ Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Password Input
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Hover/Focus Effects: Visual effects when the input field is hovered over or focused.
+2. Password Validation: Ensures the password meets specified criteria.
+3. Debounce: Reduces the number of validation checks by implementing a debounce mechanism.
 
-### `yarn eject`
+### Date Picker
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Focus Activation: Focusing on the text field will show the date picker.
+2. Auto-Close: Clicking outside the text field will close the date picker.
+3. Year Selection: Clicking the year in the date picker allows choosing the year.
+4. Apply Date: Pressing the OK button will apply the chosen date to the text field.
+5. Reset Date: Deleting the chosen date will reset the date picker.
+6. Cancel Selection: Pressing the Cancel button will reset the chosen date.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## ▌ Quick Start
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Copy the content of root folder to your project folder.
+2. Run the cmd: `npm install` or `npm i`.
+3. Run the cmd: `npm run start`.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## ▌ Contact
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Charlie WU](https://github.com/Chongfong)
+
+Email: wl0079665@gmail.com
