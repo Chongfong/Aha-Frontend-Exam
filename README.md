@@ -56,6 +56,13 @@ Date Picker: allows users to select a date easily
 
 ---
 
+## ▌ Design
+
+This repo is followed the design by: 
+[Figma link](https://reurl.cc/93QMod)
+
+---
+
 ## ▌ Quick Start
 
 1. Copy the content of root folder to your project folder.
