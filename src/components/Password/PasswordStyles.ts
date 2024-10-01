@@ -8,6 +8,7 @@ const passwordStyles = {
   passwordInput: {
     width: 335,
     boxSizing: 'border-box',
+    '& label.Mui-focused': { color: 'white' },
     '.MuiOutlinedInput-root': { borderRadius: '8px' },
     '.MuiInputLabel-root': { color: 'white', paddingX: '2px' },
     '.MuiOutlinedInput-notchedOutline': { borderWidth: '3px' },
