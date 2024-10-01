@@ -15,8 +15,8 @@ function App() {
     <div className='App'>
       <ThemeProvider theme={darkTheme}>
         <header className='App-header'>
-          <DatePicker />
           <Password />
+          <DatePicker />
         </header>
       </ThemeProvider>
     </div>
