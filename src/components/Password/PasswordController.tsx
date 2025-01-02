@@ -15,7 +15,7 @@ export default function PasswordController() {
     uppercase: /[A-Z]/.test(inputPassword),
     lowercase: /[a-z]/.test(inputPassword),
     number: /[0-9]/.test(inputPassword),
-    specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(inputPassword),
+    specialChar: /[!@#$%^&*(),.?'~`":;/{}|<>+\-=_\\[\]]/.test(inputPassword),
   });
 
   const debounce = (func: Function, delay: number) => {
