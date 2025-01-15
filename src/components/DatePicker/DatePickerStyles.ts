@@ -28,8 +28,13 @@ export const datePickerStyles = {
     bgcolor: '#181818',
     width: '320px',
     height: '469px',
+    display: 'flex',
+    flexDirection: 'column',
     borderRadius: '10px',
     marginTop: '14px',
+    h4: {
+      margin: 0,
+    },
     '.MuiBox-root': {
       alignItems: 'flex-start',
     },
@@ -39,6 +44,7 @@ export const datePickerStyles = {
       padding: '0 25px 0 24px',
     },
     '.MuiDayCalendar-monthContainer': {
+      position: 'relative',
       top: '11px',
     },
     '.MuiPickersDay-dayOutsideMonth': {
@@ -46,7 +52,7 @@ export const datePickerStyles = {
     },
     '.MuiPickersLayout-actionBar': {
       gap: '32px',
-      padding: '0px 22px 18px 0',
+      padding: '11px 22px 18px 0',
     },
     '.MuiPickersLayout-actionBar .MuiButton-root': {
       fontSize: '14px',
